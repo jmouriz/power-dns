@@ -2,3 +2,4 @@ data/*
 !data/.gitkeep
 *.log
 .DS_Store
+files.tar.bz2
