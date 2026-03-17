@@ -1,0 +1,23 @@
+services:
+  pdns:
+    build: .
+    container_name: power-dns
+    restart: unless-stopped
+
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+
+    volumes:
+      - ./data:/data
+
+    environment:
+      PDNS_API_KEY: "${PDNS_API_KEY:-change}"
+      PDNS_WEBSERVER_ALLOW_FROM: "${PDNS_WEBSERVER_ALLOW_FROM:-0.0.0.0/0,::/0}"
+      PDNS_PRIMARY: "${PDNS_PRIMARY:-yes}"
+      PDNS_SECONDARY: "${PDNS_SECONDARY:-yes}"
+      PDNS_AUTOSECONDARY: "${PDNS_AUTOSECONDARY:-no}"
+      PDNS_API: "${PDNS_API:-yes}"
+      PDNS_WEBSERVER: "${PDNS_WEBSERVER:-yes}"
+      PDNS_MASTER_IP: "${PDNS_MASTER_IP:-0.0.0.0/0,::/0}"
+      PDNS_MASTER_NS: "${PDNS_MASTER_NS:-}"
